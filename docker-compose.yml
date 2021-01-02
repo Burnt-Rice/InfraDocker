@@ -12,4 +12,9 @@ services:
       container_name: msf
       tty: true
       stdin_open: true
-
+    kali:
+      image: kalilinux/kali-rolling:latest
+      volumes:
+        - ./scratch/:/share/
+      tty: true
+      stdin_open: true
