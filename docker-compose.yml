@@ -18,3 +18,21 @@ services:
         - ./scratch/:/share/
       tty: true
       stdin_open: true
+    files:
+      container_name: files
+      image: python:3  
+      working_dir: /share/
+      command: python -m http.server 80
+      volumes:
+        - share:/share/
+    impacket:
+      container_name: impacket
+      build: ./images/impacket
+      working_dir: /share
+      command: smbserver.py -smbsupport share /share
+      ports:
+        - 0.0.0.0:445:445/tcp
+      volumes:
+        - share:/share
+volumes:
+  share: {}

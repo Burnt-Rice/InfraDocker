@@ -1,6 +1,6 @@
 from python:latest
 
 RUN set -x \
-    && pip install imapcket \
+    && pip install impacket \
     && echo '[+] Done'
 
