@@ -4,16 +4,20 @@ services:
       image: nginx:latest
       container_name: proxy
       volumes:
-        - ./nginx.conf:/etc/nginx/nginx.conf
+        - ./nginx.conf:/etc/nginx/nginx.conf:ro
       ports:
-        - 80:80/tcp
+        - 0.0.0.0:80:80/tcp
     msf: 
       image: metasploitframework/metasploit-framework:latest
       container_name: msf
       tty: true
       stdin_open: true
+      volumes:
+        - ./scratch:/tmp/
+        - share:/share/
+
     kali:
-      image: kalilinux/kali-rolling:latest
+      build: ./images/kali/
       volumes:
         - ./scratch/:/share/
       tty: true

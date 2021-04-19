@@ -13,7 +13,12 @@ RUN set -x \
     tmux \
     dirbuster \
     gobuster \
+    python3-pip \
     && echo '[+] Done'
-
+RUN set -x \ 
+    && echo '[+]Installing python3 linters' \
+    && pip3 install mypy \
+    && pip3 install black \
+    && echo '[+] Done'
 
 CMD ["/bin/bash"]
